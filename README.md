@@ -1,3 +1,3 @@
 # Yoda
 
-# This is Etravili StarCorp vision
+# This is private habit tracker
