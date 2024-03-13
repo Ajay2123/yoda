@@ -4,11 +4,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import { PeopleContextProvider } from "./context/PeopleContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
-        <App />
+        <PeopleContextProvider>
+            <App />
+        </PeopleContextProvider>
     </React.StrictMode>
 );
 
