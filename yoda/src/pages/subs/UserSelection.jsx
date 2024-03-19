@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
 import { fetchPeople } from "../../api/people";
 import { PeopleContext } from "../../context/PeopleContext";
 
 export const UserSelection = () => {
     const [peopleList, setPeopleList] = useState([]);
-    const [selectedPerson, setSelectedPerson] = useState("");
-    const { currentUser, updateCurrentUser, updateCurrentUserGoals } =
+    const { updateCurrentUser, updateCurrentUserGoals } =
         useContext(PeopleContext);
 
     useEffect(() => {
@@ -21,35 +20,21 @@ export const UserSelection = () => {
         fetchDataFromApi();
     }, []);
 
-    useEffect(() => {
-        updateCurrentUser(
-            peopleList.filter((person) => person.name === selectedPerson)[0]
-        );
-        updateCurrentUserGoals(currentUser?.goals);
-    }, [selectedPerson]);
-
-    const handlePersonChange = (event) => {
-        setSelectedPerson(event.target.value);
+    const handlePersonChange = (person) => {
+        updateCurrentUser(person);
+        updateCurrentUserGoals(person.goals);
     };
 
     return (
         <div>
-            <FormControl fullWidth>
-                <InputLabel id="person-select-label">Select Person</InputLabel>
-                <Select
-                    labelId="person-select-label"
-                    id="person-select"
-                    value={selectedPerson}
-                    label="Select Person"
-                    onChange={handlePersonChange}
+            {peopleList.map((person) => (
+                <IconButton
+                    key={person.id}
+                    onClick={() => handlePersonChange(person)}
                 >
-                    {peopleList.map((person) => (
-                        <MenuItem key={person.id} value={person.name}>
-                            {person.name}
-                        </MenuItem>
-                    ))}
-                </Select>
-            </FormControl>
+                    <Avatar alt={person.name}>{person.name[0]}</Avatar>
+                </IconButton>
+            ))}
         </div>
     );
 };
