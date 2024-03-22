@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Avatar, IconButton } from "@mui/material";
 import { fetchPeople } from "../../api/people";
 import { PeopleContext } from "../../context/PeopleContext";
-import { fetchGoalsByID } from "../../api/goals";
+import { fetchGoalsBypersonID } from "../../api/goals/getGoals";
 
 export const UserSelection = () => {
     const [peopleList, setPeopleList] = useState([]);
@@ -20,7 +20,7 @@ export const UserSelection = () => {
 
     const fetchGoalsFromApi = async (id) => {
         try {
-            const data = await fetchGoalsByID(id);
+            const data = await fetchGoalsBypersonID(id);
             updateCurrentUserGoals(data);
         } catch (error) {
             console.error("Error fetching Goals:", error);
