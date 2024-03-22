@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Avatar, IconButton } from "@mui/material";
-import { fetchPeople } from "../../api/people";
+import { fetchPeople } from "../../api/people/getPeople";
 import { PeopleContext } from "../../context/PeopleContext";
 import { fetchGoalsBypersonID } from "../../api/goals/getGoals";
 

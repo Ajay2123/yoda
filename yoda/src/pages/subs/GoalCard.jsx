@@ -19,35 +19,29 @@ const GoalCard = () => {
     ];
 
     return (
-        <Grid container spacing={2}>
+        <Grid container spacing={1} sx={{ padding: 2 }}>
             {currentUserGoals.map((goal, index) => (
                 <Grid item key={index} xs={12} sm={12} md={12}>
                     <Paper
-                        elevation={3}
+                        elevation={0}
                         sx={{
                             position: "relative",
-                            maxWidth: 1000,
                             borderRadius: "10px",
                             backgroundColor: colors[index % colors.length],
-                            minHeight: "200px",
                             padding: 2,
                         }}
                     >
-                        <Typography
-                            variant="h5"
-                            component="div"
-                            color="text.primary"
-                        >
-                            {goal.title}
+                        <Typography variant="body1" color="text.primary">
+                            {goal.sublabel}
                         </Typography>
-                        <Typography variant="body2" color="text.primary">
+                        <Typography variant="h4" color="text.primary">
                             {goal.description}
                         </Typography>
                         <Button
                             variant="contained"
                             href={goal.link}
                             target="_blank"
-                            sx={{ marginTop: 1 }}
+                            sx={{ marginTop: 5, borderRadius: "10px" }}
                         >
                             Complete
                         </Button>
