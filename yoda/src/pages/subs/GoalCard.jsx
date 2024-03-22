@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Paper, Typography, Button, Grid } from "@mui/material";
 import { PeopleContext } from "../../context/PeopleContext";
-
+import finance from "../../assets/images/finance.png";
 const GoalCard = () => {
     const { currentUserGoals } = useContext(PeopleContext);
 
@@ -19,36 +19,46 @@ const GoalCard = () => {
     ];
 
     return (
-        <Grid container spacing={1} sx={{ padding: 2 }}>
+        <div>
             {currentUserGoals.map((goal, index) => (
-                <Grid item key={index} xs={12} sm={12} md={12}>
-                    <Paper
-                        elevation={0}
-                        sx={{
-                            position: "relative",
-                            borderRadius: "10px",
-                            backgroundColor: colors[index % colors.length],
-                            padding: 2,
-                        }}
-                    >
-                        <Typography variant="body1" color="text.primary">
-                            {goal.sublabel}
-                        </Typography>
-                        <Typography variant="h4" color="text.primary">
-                            {goal.description}
-                        </Typography>
-                        <Button
-                            variant="contained"
-                            href={goal.link}
-                            target="_blank"
-                            sx={{ marginTop: 5, borderRadius: "10px" }}
-                        >
-                            Complete
-                        </Button>
-                    </Paper>
-                </Grid>
+                <Paper
+                    key={index}
+                    elevation={0}
+                    sx={{
+                        position: "relative",
+                        borderRadius: "10px",
+                        backgroundColor: colors[index % colors.length],
+                        padding: 2,
+                        margin: 1,
+                        maxHeight: 200,
+                        maxWidth: "100vw",
+                        overflowX: "hidden",
+                    }}
+                >
+                    <Grid container>
+                        <Grid item xs={8} sm={8} md={8}>
+                            <Typography variant="body1" color="text.primary">
+                                {goal.sublabel}
+                            </Typography>
+                            <Typography variant="h4" color="text.primary">
+                                {goal.description}
+                            </Typography>
+                            <Button
+                                variant="contained"
+                                href={goal.link}
+                                target="_blank"
+                                sx={{ marginTop: 5, borderRadius: "10px" }}
+                            >
+                                Complete
+                            </Button>
+                        </Grid>
+                        <Grid item key={index} xs={4} sm={4} md={4}>
+                            <img src={finance} alt="" height={150}></img>
+                        </Grid>
+                    </Grid>
+                </Paper>
             ))}
-        </Grid>
+        </div>
     );
 };
 
